@@ -1,0 +1,29 @@
+version: '2.1'
+
+services:
+  app:
+    container_name: docker-node-postgres
+    restart: always
+    build: .
+    ports:
+      - '3000:3000'
+    environment:
+      - DATABASE_URL=postgres://apidocker:password@db:5432/apidocker
+    links:
+      - db
+  
+  db:
+    container_name: db
+    image: postgres
+    ports:
+      - '5431:5432'
+    environment:
+      - POSTGRES_USER=apidocker
+      - POSTGRES_PASSWORD=password   
+
+
+
+
+
+
+

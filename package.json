@@ -1,0 +1,20 @@
+{
+  "name": "dockertest",
+  "version": "1.0.0",
+  "description": "node js Docker app",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "author": "Leonardo Tosetto",
+  "license": "MIT",
+  "dependencies": {
+    "koa": "^2.6.2",
+    "koa-bodyparser": "^4.2.1",
+    "koa-router": "^7.4.0",
+    "koa-send": "^5.0.0",
+    "koa-static": "^5.0.0",
+    "pg": "^7.6.1"
+  }
+}
