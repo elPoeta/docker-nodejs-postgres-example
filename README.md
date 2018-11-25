@@ -15,14 +15,13 @@ $ docker-compose up
 
     * open pgadmin
     * create server
-        ```
+        
         User: apidocker
         password: password 
-        ```
+        
     * create database named apidocker
     * create table named languages
     
-        ```
         CREATE TABLE public.languages
             (
             id integer NOT NULL DEFAULT nextval('languages_id_seq'::regclass),
@@ -38,6 +37,6 @@ $ docker-compose up
 
             ALTER TABLE public.languages
             OWNER to apidocker;
-        ```
+    
 
-Open your browser and type https://localhost:3000
+Open your browser and type http://localhost:3000
