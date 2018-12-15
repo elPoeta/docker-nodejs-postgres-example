@@ -1,13 +1,20 @@
-FROM node:11.2.0-stretch
+# Use Node v11
+FROM node:11.4.0-stretch
 
+# Setup app working directory
 WORKDIR /usr/src/app
 
+# Copy package.json and package-lock.json
 COPY package*.json ./
 
+# Install app dependencies
 RUN npm install
 
+# Copy sourcecode
 COPY . .
 
-EXPOSE 3000
+#EXPOSE PORT
+EXPOSE 4000
 
-CMD ["npm", "start"]
+# Start app
+CMD [ "npm", "start" ]

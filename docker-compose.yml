@@ -1,29 +1,40 @@
-version: '2.1'
+version: '2'
 
 services:
-  app:
-    container_name: docker-node-postgres
-    restart: always
+  api: # Node.js App
+    container_name: test-api
     build: .
     ports:
-      - '3000:3000'
-    environment:
-      - DATABASE_URL=postgres://apidocker:password@db:5432/apidocker
+      - "4000:4000" # Expose API port
+      - "9229:9229" # Expose Node process debug port (disable in production)
+    environment: # Set ENV vars
+     - NODE_ENV=local
+     - DATABASE_URL=postgres://docker:password@test-db:5432/my_test_db
+     - PORT=4000
     links:
-      - db
-  
-  db:
-    container_name: db
+      - postgres 
+   
+  frontend: # Nginx Server For Frontend App
+    container_name: test-frontend
+    image: nginx
+    volumes: # Serve local "public" dir
+      - ./public:/usr/share/nginx/html
+    ports:
+      - "8095:80" # Forward site to localhost:8095
+ 
+  postgres:
+    container_name: test-db
     image: postgres
     ports:
       - '5431:5432'
     environment:
-      - POSTGRES_USER=apidocker
-      - POSTGRES_PASSWORD=password   
-
-
-
-
-
-
-
+      - POSTGRES_USER=docker
+      - POSTGRES_PASSWORD=password 
+      - POSTGRES_DB=my_test_db 
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
+    build:
+      context: .
+      dockerfile: ./pgconfig/Dockerfile
+volumes:
+  postgres-data:
