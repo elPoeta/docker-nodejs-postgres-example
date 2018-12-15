@@ -8,10 +8,7 @@ const port = process.env.PORT || 4000;
 const app = new Koa();
 
 app.use(async (ctx, next) => {
-    ctx.set('Access-Control-Allow-Origin', '*');
-   // ctx.set('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Accept-Language, Content-Language');
-    //ctx.set('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, OPTIONS');
-    //ctx.set('Access-Control-Allow-Credentials',true);
+    ctx.set('Access-Control-Allow-Origin', 'localhost:8095');
     return next();
   });
   
